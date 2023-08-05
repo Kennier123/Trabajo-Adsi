@@ -1,11 +1,13 @@
 package com.KenierAlirioGuerreroCespedes.Adsi;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class Registro extends AppCompatActivity {
@@ -30,21 +32,50 @@ public class Registro extends AppCompatActivity {
         botonRegistrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Aquí puedes agregar la lógica para registrar al usuario
-                String usuario = editTextUsuario.getText().toString();
+                // Obtén los datos ingresados por el usuario
+                String Usuario = editTextUsuario.getText().toString();
                 String correo = editTextCorreo.getText().toString();
                 String contrasena = editTextContrasena.getText().toString();
-                // Lógica para el registro
+
+                if (Usuario.isEmpty()){
+                    editTextUsuario.setError("Debes poner un nombre de usuario");
+                    return;
+                }
+
+                if (correo.isEmpty()){
+                    editTextCorreo.setError("Debes poner un correo");
+                    return;
+                }
+
+                if (contrasena.isEmpty()){
+                    editTextContrasena.setError("Debes poner una contraseña");
+                    return;
+                }
+
+                // Guarda los datos en SharedPreferences
+                SharedPreferences sharedPreferences = getSharedPreferences("usuarios", MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString(correo + "_usuario", Usuario);
+                editor.putString(correo + "_contrasena", contrasena);
+                editor.apply();
+
+                // Muestra un mensaje de éxito
+                Toast.makeText(Registro.this, "Registro exitoso", Toast.LENGTH_SHORT).show();
+
+                Intent intento = new Intent(Registro.this, Iniciar.class);
+                startActivity(intento);
             }
         });
 
         textViewIniciarSesion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Aquí abrimos la actividad IniciarSesionActivity
+                // Redirige a la actividad Iniciar.java
                 Intent intent = new Intent(Registro.this, Iniciar.class);
                 startActivity(intent);
             }
         });
     }
 }
+
+
