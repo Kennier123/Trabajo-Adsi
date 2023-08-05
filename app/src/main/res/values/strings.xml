@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Mi App</string>
+    <string-array name="spinner_options">
+        <item>Usuario</item>
+        <item>Amigo</item>
+        <item>Cerrar Sesión</item>
+    </string-array>
 </resources>
