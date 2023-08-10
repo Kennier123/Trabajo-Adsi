@@ -13,7 +13,7 @@ public class Inicio extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inicio);
 
-        ImageView opcionesImageView = findViewById(R.id.Opciones);
+        ImageView opcionesImageView = findViewById(R.id.opciones);
         opcionesImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

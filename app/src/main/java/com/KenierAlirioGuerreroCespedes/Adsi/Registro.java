@@ -55,8 +55,9 @@ public class Registro extends AppCompatActivity {
                 // Guarda los datos en SharedPreferences
                 SharedPreferences sharedPreferences = getSharedPreferences("usuarios", MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putString(correo + "_usuario", Usuario);
-                editor.putString(correo + "_contrasena", contrasena);
+                editor.putString("correo", correo);
+                editor.putString("usuario", Usuario);
+                editor.putString("contrasena", contrasena);
                 editor.apply();
 
                 // Muestra un mensaje de éxito

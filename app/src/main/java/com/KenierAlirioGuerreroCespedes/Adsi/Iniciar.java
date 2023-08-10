@@ -46,7 +46,7 @@ public class Iniciar extends AppCompatActivity {
 
                 // Recupera los datos almacenados en SharedPreferences
                 SharedPreferences sharedPreferences = getSharedPreferences("usuarios", MODE_PRIVATE);
-                String savedContrasena = sharedPreferences.getString(correo + "_contrasena", "");
+                String savedContrasena = sharedPreferences.getString("contrasena", "");
 
                 // Comprueba si las contraseñas coinciden
                 if (contrasena.equals(savedContrasena)) {
